@@ -1,0 +1,4 @@
+//student json --> id name email per 
+// get student by name ->
+// get student by pee condition
+//get all student data in upper case
