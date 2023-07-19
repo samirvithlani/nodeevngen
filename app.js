@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 //server creation
 //devtool --> nodemon
 const PORT = 3000;
+const userRoutes = require("./routes/UserRoutes");
+
+
 
 //db connection
 
@@ -21,46 +24,27 @@ mongoose.connect("mongodb://127.0.0.1:27017/nodeevngen",{
     console.log(err);
 })
 
-var users =[
-    {
-        name:"john",
-        age:20,
-        city:"bangalore"
-    },{
-        name:"jay",
-        age:22,
-        city:"bangalore"
-    }
-]
 
-app.get('/test',(req,res)=>{
-    console.log("test api");
-    //res.send("test api");
-   // res.status(201).send("test api");
-   res.status(200).json({
-         message:"test api",
-         success:true,
-   })
-})
 
-app.get('/users',(req,res)=>{
-    res.status(200).json({
-        message:"users api",
-        data:users,
-    })
-})
+//localhost:3000/user/users
+app.use("/user",userRoutes);
 
-//:id --> path parameter
-app.get('/users/:id',(req,res)=>{
+// app.get("/users",(req,res)=>{
 
-    var id = req.params.id;
-    console.log(id);
-    res.status(200).json({
-        message:"users api",
-        data:id,
-    })
+//     userSchema.find().then((users)=>{
+//         res.status(200).json({
+//             message:"users fetched",
+//             users:users
+//         })
 
-})
+//     }).catch((err)=>{
+//         res.status(500).json({
+//             message:"error occured",
+//             error:err
+//         })
+//     })
+
+// })
 
 
 
