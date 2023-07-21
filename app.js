@@ -5,6 +5,10 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+app.use(express.json());
+//allow url encoded data
+app.use(express.urlencoded({extended:true}));
+//form-data...
 //server apache tomcat, weblogic, websphere 3rd party
 //server creation
 //devtool --> nodemon
