@@ -16,6 +16,10 @@ const userSchema =new Schema({
     },
     birthDate:{
         type:Date,
+    },
+    role:{
+        ref:"Role",
+        type:Schema.Types.ObjectId
     }
 })
 // mongoose.model("user",userSchema);

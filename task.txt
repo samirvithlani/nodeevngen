@@ -2,3 +2,9 @@
 // get student by name ->
 // get student by pee condition
 //get all student data in upper case
+
+
+//category
+//product --> catrgory
+
+//user register --> email already exist --> email is already exist....

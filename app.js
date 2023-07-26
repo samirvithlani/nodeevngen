@@ -8,12 +8,13 @@ const mongoose = require('mongoose');
 app.use(express.json());
 //allow url encoded data
 app.use(express.urlencoded({extended:true}));
-//form-data...
+//form-data... ??
 //server apache tomcat, weblogic, websphere 3rd party
 //server creation
 //devtool --> nodemon
 const PORT = 3000;
 const userRoutes = require("./routes/UserRoutes");
+const roleRoutes = require("./routes/RoleRoutes");
 
 
 
@@ -32,6 +33,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/nodeevngen",{
 
 //localhost:3000/user/users
 app.use("/user",userRoutes);
+app.use("/role",roleRoutes);
 
 // app.get("/users",(req,res)=>{
 
