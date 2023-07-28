@@ -8,3 +8,10 @@
 //product --> catrgory
 
 //user register --> email already exist --> email is already exist....
+
+//user id -> cart 
+//  iphone13 --> cart  -->  50 % discount
+// pull --> push
+// cart total -->
+// product --> status field --> active , inactive
+// status incative -->  remove....

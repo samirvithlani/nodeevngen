@@ -15,6 +15,8 @@ app.use(express.urlencoded({extended:true}));
 const PORT = 3000;
 const userRoutes = require("./routes/UserRoutes");
 const roleRoutes = require("./routes/RoleRoutes");
+const productRoutes = require("./routes/ProductRoutes");
+const cartRoutes = require("./routes/CartRoutes");
 
 
 
@@ -34,6 +36,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/nodeevngen",{
 //localhost:3000/user/users
 app.use("/user",userRoutes);
 app.use("/role",roleRoutes);
+app.use("/product",productRoutes);
+app.use("/cart",cartRoutes);
 
 // app.get("/users",(req,res)=>{
 
