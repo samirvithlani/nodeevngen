@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const userController = require("../controller/UserController");
-router.get("/user",userController.getAllUsers);
+const authUtil = require("../util/AuthUtil")
+
+router.get("/user",authUtil.authUtil,userController.getAllUsers);
+//router.get("/user",authUtil.authUtil("123455"),userController.getAllUsers);
 router.get("/user/:id",userController.getUserById);
 router.get("/user/name/:name",userController.getUserbyName);
 router.post("/user",userController.addUser1);

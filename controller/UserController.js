@@ -20,6 +20,8 @@ const getAllUsersWithRole = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
+  
+
   userSchema
     .find()
     .then((users) => {
