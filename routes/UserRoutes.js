@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userController = require("../controller/UserController");
 const authUtil = require("../util/AuthUtil")
+const authtokenUtil = require("../util/AuthTokenUtil")
 
-router.get("/user",authUtil.authUtil,userController.getAllUsers);
+router.get("/user",authtokenUtil.authUser,userController.getAllUsers);
 //router.get("/user",authUtil.authUtil("123455"),userController.getAllUsers);
 router.get("/user/:id",userController.getUserById);
 router.get("/user/name/:name",userController.getUserbyName);

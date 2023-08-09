@@ -1,5 +1,6 @@
 const userSchema = require("../model/UserModel");
 const { isEmpaty } = require("../util/ValidationUtil");
+const tokenUtil = require("../util/TokenUtil");
 
 const getAllUsersWithRole = (req, res) => {
   userSchema
@@ -20,8 +21,6 @@ const getAllUsersWithRole = (req, res) => {
 };
 
 const getAllUsers = (req, res) => {
-  
-
   userSchema
     .find()
     .then((users) => {
@@ -83,20 +82,32 @@ const addUser1 = async (req, res) => {
       const user = new userSchema(req.body);
       try {
         var flag = await user.save();
-        console.log(flag);
+
         if (flag != undefined || flag != null || flag != [] || flag != {}) {
-          res.status(200).json({
-            message: "user added",
-            user: flag,
-          });
+          console.log(flag);
+          try {
+            var token = await tokenUtil.generateToken(flag);
+            console.log("token....", token);
+            res.status(200).json({
+              message: "user added",
+              token: token,
+            });
+          } catch (err) {
+            res.status(500).json({
+              message: "error occured",
+              err: err,
+            });
+          }
         } else {
           res.status(500).json({
             message: "error occured",
+            err: err,
           });
         }
       } catch (err) {
         res.status(500).json({
           message: "error occured",
+          err: err,
         });
       }
     } else {
