@@ -1,6 +1,8 @@
 const userSchema = require("../model/UserModel");
 const { isEmpaty } = require("../util/ValidationUtil");
 const tokenUtil = require("../util/TokenUtil");
+const authSchema = require("../model/AuthSchema");
+const passwordUtil = require("../util/PasswordUtil");
 
 const getAllUsersWithRole = (req, res) => {
   userSchema
@@ -79,7 +81,16 @@ const getUserbyName = async (req, res) => {
 const addUser1 = async (req, res) => {
   if (req.body) {
     if (isEmpaty(req.body.name) && isEmpaty(req.body.email)) {
-      const user = new userSchema(req.body);
+      const userData = {
+        name: req.body.name,
+        email: req.body.email,
+        password: await passwordUtil.hashPassword(req.body.password),
+        age: req.body.age,
+        role: req.body.role,
+      };
+      console.log(userData);
+
+      const user = new userSchema(userData);
       try {
         var flag = await user.save();
 
@@ -87,6 +98,13 @@ const addUser1 = async (req, res) => {
           console.log(flag);
           try {
             var token = await tokenUtil.generateToken(flag);
+            var auth = new authSchema({
+              user: flag._id,
+              token: token,
+            });
+            //try catch
+            var authData = await auth.save();
+
             console.log("token....", token);
             res.status(200).json({
               message: "user added",
@@ -225,6 +243,38 @@ const updateUser = (req, res) => {
   });
 };
 
+const loginUser = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const userData = await userSchema.findOne({ email: email });
+  if (
+    userData != undefined ||
+    userData != null ||
+    userData != [] ||
+    userData != {}
+  ) {
+    const result = await passwordUtil.comparePassword(
+      password,
+      userData.password
+    );
+    if (result) {
+      res.status(200).json({
+        message: "login success",
+        data: userData,
+      });
+    } else {
+      res.status(404).json({
+        message: "invalid password",
+      });
+    }
+  } else {
+    res.status(404).json({
+      message: "user not found",
+    });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -234,6 +284,7 @@ module.exports = {
   deleteUser,
   updateUser,
   getAllUsersWithRole,
+  loginUser,
 };
 
 // app.get("/users",(req,res)=>{

@@ -12,4 +12,5 @@ router.post("/user",userController.addUser1);
 router.delete('/user/:id',userController.deleteUser);
 router.put('/user/:id',userController.updateUser);
 router.get('/user1',userController.getAllUsersWithRole)
+router.post('/login',userController.loginUser)
 module.exports = router;
