@@ -18,6 +18,7 @@ const roleRoutes = require("./routes/RoleRoutes");
 const productRoutes = require("./routes/ProductRoutes");
 const cartRoutes = require("./routes/CartRoutes");
 const studentRoutes = require("./routes/StudentRoutes");
+const uploadRoutes = require("./routes/FileRoutes");
 
 
 
@@ -40,6 +41,7 @@ app.use("/role",roleRoutes);
 app.use("/product",productRoutes);
 app.use("/cart",cartRoutes);
 app.use("/student",studentRoutes);
+app.use("/upload",uploadRoutes);
 
 // app.get("/users",(req,res)=>{
 
