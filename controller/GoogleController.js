@@ -4,7 +4,7 @@ const path = require("path");
 //const { google } = require("googleapis");
 const {google} = require("googleapis")
 const GOOGLE_DRIVE_FOLDER_ID ="1Nmip2apVesaUy-KUs3b7sz8esMSxqyXR"
-const KEYFILEPATH = "./googlekey.json";
+const KEYFILEPATH = "";
 
 async function getAllFileFromGoogleDrive() {
     const auth = new google.auth.GoogleAuth({
