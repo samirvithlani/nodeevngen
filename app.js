@@ -24,7 +24,7 @@ const uploadRoutes = require("./routes/FileRoutes");
 
 //db connection
 
-mongoose.connect("mongodb://127.0.0.1:27017/nodeevngen",{
+mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/nodeevngen",{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then(()=>{
