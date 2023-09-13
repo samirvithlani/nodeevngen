@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "build": "npm run build",
-    "start": "node app.js"
+    "dev": "set NODE_ENV=development&& node app.js",
+    "prod": "set NODE_ENV=production&& node app.js"
+  
   },
   "engines": {
     "node": ">=14"

@@ -4,6 +4,11 @@
 
 const express = require('express');
 const app = express();
+const config =  require('./config.js');
+
+
+
+
 const mongoose = require('mongoose');
 app.use(express.json());
 //allow url encoded data
@@ -12,7 +17,7 @@ app.use(express.urlencoded({extended:true}));
 //server apache tomcat, weblogic, websphere 3rd party
 //server creation
 //devtool --> nodemon
-const PORT = 3000;
+const PORT = config.PORT;
 const userRoutes = require("./routes/UserRoutes");
 const roleRoutes = require("./routes/RoleRoutes");
 const productRoutes = require("./routes/ProductRoutes");
@@ -23,8 +28,10 @@ const studentRoutes = require("./routes/StudentRoutes");
 
 
 //db connection
-
-mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/nodeevngen",{
+const dbUrl = config.DB_URL;
+console.log("db url...",dbUrl);
+//mongo url --> mongodb://localhost:27017/ecom
+mongoose.connect(dbUrl,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 }).then(()=>{
